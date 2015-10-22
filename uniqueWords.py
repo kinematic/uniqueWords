@@ -56,7 +56,7 @@ text.extend(textUnique)
 #textUnique.clear()
 
 # открываем список известных слов для удаления из файла
-f = open('knownWorlds.txt', 'r', encoding='utf8')
+f = open('knownWords.txt', 'r', encoding='utf8')
 knownWorlds = f.read().split()
 f.close()
 
@@ -70,13 +70,13 @@ for i in text:
   k += 1
   #print(i)
   try:
-    if knownWorlds.index(i) >= 0:
+    if knownWords.index(i) >= 0:
       textUnique.remove(i)
   except ValueError:
     if wordSelect:
       cmdInput = input(str(k) + '/' + str(len(textUnique)) + ' ' + '\033[32m' + i + '\033[0m'+ ' ')
       if cmdInput in ['', 'y', 'Y']:
-        knownWorlds.append(i)
+        knownWords.append(i)
         textUnique.remove(i)
         #print('Известное слово: ' + i)
       elif cmdInput in ['e', 'E']:
@@ -90,10 +90,10 @@ for i in text:
 if cmdInput not in ['x', 'X']:
   print('Сохраняю известные слова')
   # сортируем, т.к. новые слова добавлялись в конец
-  knownWorlds.sort()
+  knownWords.sort()
   # записываем в файл
-  f = open('knownWorlds.txt', 'w', encoding='utf8')
-  for i in knownWorlds:
+  f = open('knownWords.txt', 'w', encoding='utf8')
+  for i in knownWords:
     f.write(i + '\n')
   f.close()
 
